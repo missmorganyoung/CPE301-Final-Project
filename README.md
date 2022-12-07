@@ -3,5 +3,4 @@
 Group Name: Group 404
 
 Team Members:
-Morgan Young
-Dylan Perkins
+Morgan Young & Dylan Perkins
