@@ -48,3 +48,42 @@ void loop() {
           }
           
       break;
+      
+      // case 2 is the RUNNING state (represented by the blue LED)
+      case 2:
+      
+         if(tempF < 75){
+           
+           state = 1;
+           
+         }
+         
+         else{
+           
+            if(value < 150){
+              
+              state = 3;
+            
+            }
+            
+            else{
+              
+              digitalWrite(yellowLED, LOW);     // The yellow led will turn off.
+              digitalWrite(greenLED, LOW);      // The green led will turn off.
+              digitalWrite(blueLED, HIGH);       // The blue led will turn on.
+              digitalWrite(redLED, LOW);       // The red led will turn off.
+      
+              lcd.clear();
+              lcd.setCursor(0, 0);
+              lcd.print("Temp: ");
+              lcd.print(tempF);
+              lcd.setCursor(0,1);
+              lcd.print("Humidity: ");
+              lcd.print(humidity);
+              analogWrite(motor, 200);
+              
+            } 
+          
+          }
+          
+      break;
