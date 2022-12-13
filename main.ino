@@ -87,3 +87,28 @@ void loop() {
           }
           
       break;
+      
+      // case 3 is the ERROR state (represented by the Red LED)
+      case 3:         
+      
+          if(value > 150){
+            
+            state = 1;
+            
+          }
+          
+          else{
+            
+            digitalWrite(yellowLED, LOW);     // The yellow led will turn off.
+            digitalWrite(greenLED, LOW);      // The green led will turn off.
+            digitalWrite(blueLED, LOW);       // The blue led will turn off.
+            digitalWrite(redLED, HIGH);       // The red led will turn on.
+    
+            lcd.clear();
+            lcd.setCursor(0, 0);
+            lcd.print("Error");
+            analogWrite(motor, 0);
+
+          }
+          
+      break;
