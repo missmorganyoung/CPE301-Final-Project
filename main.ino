@@ -32,6 +32,26 @@ const int threshold = 100;
 int buttonState = 0;
 int state = 0;
 
+void setup() {
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  
+  pinMode(yellowLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  pinMode(blueLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
+  pinMode(motor, OUTPUT);
+  pinMode(button, INPUT);
+
+  dht.begin();
+
+  digitalWrite(yellowLED,LOW);
+  digitalWrite(greenLED,LOW);
+  digitalWrite(blueLED,LOW);
+  digitalWrite(redLED,LOW);
+}
+
+
 void loop() {
   delay(500);
   float humidity = dht.readHumidity();
