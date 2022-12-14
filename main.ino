@@ -161,3 +161,31 @@ void loop() {
           }
           
       break;
+      // the default case is the DISABLED state (represented by the yellow LED)
+      default:
+     
+        if(buttonState == HIGH){
+         
+          state = 1;
+         
+        }
+       
+        else{
+         
+          digitalWrite(yellowLED, HIGH);    // The yellow led will turn on.
+          digitalWrite(greenLED, LOW);      // The green led will turn off.
+          digitalWrite(blueLED, LOW);       // The blue led will turn off.
+          digitalWrite(redLED, LOW);        // The red led will turn off.
+   
+          lcd.clear();
+          lcd.setCursor(0, 0);
+          lcd.print("Disabled");
+          analogWrite(motor, 0);
+         
+        }
+       
+      break;
+     
+  }
+ 
+}
