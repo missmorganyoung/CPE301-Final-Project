@@ -3,32 +3,37 @@
 // Morgan Young & Dylan Perkins
 // Group 404
 
+//Includes for temperature sensor, LCD and Time Sensor
 #include "DHT.h"
 #include "LiquidCrystal.h"
 #include <Wire.h>
 #include "RTClib.h"
 
+//Time Sensor
 RTC_DS1307 rtc;
-
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
+//Temperature Sensor Pins
 #define DHTPIN 3
 #define SIGNAL_PIN A7
-
-LiquidCrystal lcd(9, 8, 13, 12, 11, 10);
-
-#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
 DHT dht(DHTPIN, DHTTYPE);
 
+//LCD Pins
+LiquidCrystal lcd(9, 8, 13, 12, 11, 10);
+
+//LEDs, Motor and Button Pins
 const int yellowLED = 26;
 const int greenLED = 27;
 const int blueLED = 28;
 const int redLED = 29;
-
 const int motor = 4;
 const int button = 5;
+
+//Threshold for Motor to activate
 const int threshold = 100;
 
+//State of button
 int buttonState = 0;
 int state = 0;
 
@@ -36,6 +41,7 @@ void setup() {
   Serial.begin(9600);
   lcd.begin(16, 2);
   
+  //Setting LEDS and motor to Outputs and the button to an Input
   pinMode(yellowLED, OUTPUT);
   pinMode(greenLED, OUTPUT);
   pinMode(blueLED, OUTPUT);
@@ -45,6 +51,7 @@ void setup() {
 
   dht.begin();
 
+  //Turn off all LEDs when starting up
   digitalWrite(yellowLED,LOW);
   digitalWrite(greenLED,LOW);
   digitalWrite(blueLED,LOW);
