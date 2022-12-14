@@ -3,6 +3,35 @@
 // Morgan Young & Dylan Perkins
 // Group 404
 
+#include "DHT.h"
+#include "LiquidCrystal.h"
+#include <Wire.h>
+#include "RTClib.h"
+
+RTC_DS1307 rtc;
+
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+#define DHTPIN 3
+#define SIGNAL_PIN A7
+
+LiquidCrystal lcd(9, 8, 13, 12, 11, 10);
+
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+
+const int yellowLED = 26;
+const int greenLED = 27;
+const int blueLED = 28;
+const int redLED = 29;
+
+const int motor = 4;
+const int button = 5;
+const int threshold = 100;
+
+int buttonState = 0;
+int state = 0;
+
 void loop() {
   delay(500);
   float humidity = dht.readHumidity();
